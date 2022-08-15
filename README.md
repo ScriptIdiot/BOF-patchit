@@ -40,6 +40,9 @@ Run patchit check when amsi.dll is not loaded:<br>
 
 patchit all:<br>
 ![image](https://user-images.githubusercontent.com/21979646/184657575-0156c5f4-4af9-41e7-ac2d-2d50a82287ca.png)
+![image](https://user-images.githubusercontent.com/21979646/184661310-8fbcd2ab-b1d1-45a3-b413-581da0eb4dcf.png)
+![image](https://user-images.githubusercontent.com/21979646/184661321-510d617b-b27a-49f5-82cf-409750afe769.png)
+
 
 patchit revertAll:<br>
 ![image](https://user-images.githubusercontent.com/21979646/184657705-a225f6f8-66cf-408e-b0f3-1166adf43a71.png)

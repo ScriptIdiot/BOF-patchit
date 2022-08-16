@@ -2,7 +2,9 @@
 
 An all-in-one BOF to patch, check and revert AMSI and ETW for x64 process. Wrote this to avoid redundant AMSI / ETW patch.
 
-Currently, it only checks / patches the first few lines of AmsiScanBuffer and EtwEventWrite, additional methods can be added easily to the source code.
+Currently, it only checks the first 10+ bytes of AmsiScanBuffer and EtwEventWrite, since most of public available patch bytes are doing on first few lines. If thats not enough, additional bytes / function to compare can be added easily to the source code.
+
+If you are not using the AMSI/ETW patch from this BOF and want to revert, you could refresh the whole AMSI and NTDLL as an alternative.
 
 *If there is no amsi.dll in current process, this bof will not load it to the process.*
 

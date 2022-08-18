@@ -8,6 +8,9 @@ If you are not using the AMSI/ETW patch from this BOF and want to revert, you co
 
 *If there is no amsi.dll in current process, this bof will not load it to the process.*
 
+**Update on 18 Aug 2022**
+
+- Added a new version doing indirect syscalls from NtApi
 
 ## Usage - Cobalt Strike
 Load patchit.cna
@@ -56,3 +59,4 @@ patchit revertAll:<br>
 * https://download.cobaltstrike.com/aggressor-script/index.html
 * https://blog.xpnsec.com/hiding-your-dotnet-etw/
 * https://rastamouse.me/memory-patching-amsi-bypass/
+* https://github.com/Cobalt-Strike/unhook-bof Big thanks to @S4ntiagoP on demonstrating how to do indirect syscalls in BOF

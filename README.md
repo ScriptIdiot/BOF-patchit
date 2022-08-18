@@ -1,4 +1,4 @@
-# Cobalt Strike BOF - patchit
+# Cobalt Strike BOF - patchit (Both syscalls and dynamic resolve versions are available)
 
 An all-in-one BOF to patch, check and revert AMSI and ETW for x64 process. Wrote this to avoid redundant AMSI / ETW patch.
 

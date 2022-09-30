@@ -12,6 +12,10 @@ If you are not using the AMSI/ETW patch from this BOF and want to revert, you co
 
 - Added a new version doing indirect syscalls for NtApi
 
+**Update on 30 Sep 2022**
+
+- Added callback unhook on syscall version
+
 ## Usage - Cobalt Strike
 Load patchit.cna
 ```

